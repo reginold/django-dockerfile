@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: twitter
+      MYSQL_USER: django
+      MYSQL_PASSWORD: yourpassword
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+  web:
+    build:
+      context: .
+    command: >
+      sh -c "python3 manage.py migrate &&
+              python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/vagrant
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
