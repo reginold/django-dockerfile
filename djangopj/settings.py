@@ -74,13 +74,13 @@ WSGI_APPLICATION = 'djangopj.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "twitter",
-        "HOST": "db",
-        "PORT": "3306",
-        "USER": "root",
-        "PASSWORD": "yourpassword",  # 这里是自己下载mysql时候输入两次的那个密码
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'HOST': 'db',
+        'PORT': 3306,
     }
 }
 
