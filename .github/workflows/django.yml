@@ -9,24 +9,24 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
       matrix:
         python-version: [3.6]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
-      run: |
-        apt-get install -y python3-pip
-        python3 -m pip install --upgrade pip
-        pip3 install docker-compose
-        pip3 install -r requirements.txt
-    - name: Run Tests
-      run: |
-        docker-compose run web sh -c "python3 manage.py test && flake8"
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      - name: Install Dependencies
+        run: |
+          apt-get install -y python3-pip
+          python3 -m pip install --upgrade pip
+          pip3 install docker-compose
+          pip3 install -r requirements.txt
+      - name: Run Tests
+        run: |
+          docker-compose run web sh -c "python3 manage.py test && flake8"
